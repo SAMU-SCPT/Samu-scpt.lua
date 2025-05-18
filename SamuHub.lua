@@ -1,6 +1,7 @@
 local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
-local trueData = "2c8a1a9f807f4351b29a6b22cbb19a3d"
-local falseData = "adfc0e1979df42d1a64a8c634514b340"
+
+local trueData = "b8992653fcf84be1aa0a976dbde6f86e"
+local falseData = "42b1a7dc9d4641848816d52410602fdb"
 
 KeyGuardLibrary.Set({
 	publicToken = "492f786125f941479a7da3b27abe74af",
@@ -13,39 +14,53 @@ local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/
 local key = ""
 
 local Window = Fluent:CreateWindow({
-		Title = "Key System",
-		SubTitle = "SAMU HUB",
-		TabWidth = 160,
-		Size = UDim2.fromOffset(580, 340),
-		Acrylic = false,
-		Theme = "Dark",
-		MinimizeKey = Enum.KeyCode.LeftControl
+	Title = "Key System",
+	SubTitle = "SAMU HUB",
+	TabWidth = 160,
+	Size = UDim2.fromOffset(580, 340),
+	Acrylic = false,
+	Theme = "Dark",
+	MinimizeKey = Enum.KeyCode.LeftControl
 })
 
 local Tabs = {
-		KeySys = Window:AddTab({ Title = "Key System", Icon = "key" }),
+	KeySys = Window:AddTab({ Title = "Key System", Icon = "key" }),
 }
 
+local ResultLabel = Tabs.KeySys:AddLabel("Status: Aguarde a validação da key.")
+
 local Entkey = Tabs.KeySys:AddInput("Input", {
-		Title = "Enter Key",
-		Description = "Enter Key Here",
-		Default = "",
-		Placeholder = "Enter key…",
-		Numeric = false,
-		Finished = false,
-		Callback = function(Value)
-				key = Value
-		end
+	Title = "Enter Key",
+	Description = "Digite sua key abaixo",
+	Default = "",
+	Placeholder = "Digite a key...",
+	Numeric = false,
+	Finished = false,
+	Callback = function(Value)
+		key = Value
+		ResultLabel:Set("Status: Key atualizada, pronto para checar.")
+	end
 })
 
+local function ValidateKey(inputKey)
+	local response = KeyGuardLibrary.validateDefaultKey(inputKey)
+	return response == trueData
+end
+
 local Checkkey = Tabs.KeySys:AddButton({
-		Title = "Check Key",
-		Description = "Enter Key before pressing this button",
-		Callback = function()
-				local response = KeyGuardLibrary.validateDefaultKey(key)
-				if response == trueData then
-						print("Key is valid")
-						local exploit = getexecutorname or identifyexecutor
+	Title = "Check Key",
+	Description = "Clique para validar a key inserida",
+	Callback = function()
+		if key == "" then
+			ResultLabel:Set("Status: Nenhuma key digitada!")
+			return
+		end
+		
+		local valid = ValidateKey(key)
+		if valid then
+			ResultLabel:Set("Status: Key válida! Acesso liberado.")
+			print("Key é válida - você pode colocar seu código aqui")
+			local exploit = getexecutorname or identifyexecutor
 local support = {
     ["Fluxus"] = true,
     ["Trigon"] = true,
@@ -7595,18 +7610,21 @@ SaveManager:BuildConfigSection(Tabs.Settings)
 
 
 SaveManager:LoadAutoloadConfig()
-				else
-						print("Key is invalid")
-				end
+		else
+			ResultLabel:Set("Status: Key inválida! Tente novamente.")
+			print("Key é inválida")
 		end
+	end
 })
 
 local Getkey = Tabs.KeySys:AddButton({
-		Title = "Get Key",
-		Description = "Get Key here",
-		Callback = function()
-				setclipboard(KeyGuardLibrary.getLink())
-		end
+	Title = "Get Key",
+	Description = "Copia uma key válida para o clipboard",
+	Callback = function()
+		local generatedKey = KeyGuardLibrary.getLink()
+		setclipboard(generatedKey)
+		ResultLabel:Set("Status: Key válida copiada para o clipboard.")
+	end
 })
 
 Window:SelectTab(1)
