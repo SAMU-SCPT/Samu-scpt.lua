@@ -1,6 +1,13 @@
-if not game:IsLoaded() then
-	repeat task.wait() until game:IsLoaded()
-end
+local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
+local trueData = "2c8a1a9f807f4351b29a6b22cbb19a3d"
+local falseData = "adfc0e1979df42d1a64a8c634514b340"
+
+KeyGuardLibrary.Set({
+	publicToken = "492f786125f941479a7da3b27abe74af",
+	privateToken = "e8f5bfbed6e34d88bba2ce0161c98c78",
+	trueData = trueData,
+	falseData = falseData,
+})
 
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local key = ""
@@ -15,52 +22,21 @@ local Window = Fluent:CreateWindow({
 		MinimizeKey = Enum.KeyCode.LeftControl
 })
 
-local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
-local trueData = "1c87ca05413b49ecbb62fa80b935fab8"
-local falseData = "e9740bf9cb924b499b6d765823adc033"
-
-KeyGuardLibrary.Set({
-	publicToken = "492f786125f941479a7da3b27abe74af",
-	privateToken = "e8f5bfbed6e34d88bba2ce0161c98c78",
-	trueData = trueData,
-	falseData = falseData,
-})
-
 local Tabs = {
-	KeySys = Window:AddTab({ Title = "Key System", Icon = "key" }),
+		KeySys = Window:AddTab({ Title = "Key System", Icon = "key" }),
 }
 
 local Entkey = Tabs.KeySys:AddInput("Input", {
-	Title = "Enter Key",
-	Description = "Enter Key Here",
-	Default = "",
-	Placeholder = "Enter key…",
-	Numeric = false,
-	Finished = false,
-	Callback = function(Value)
-		key = Value
-	end
+		Title = "Enter Key",
+		Description = "Enter Key Here",
+		Default = "",
+		Placeholder = "Enter key…",
+		Numeric = false,
+		Finished = false,
+		Callback = function(Value)
+				key = Value
+		end
 })
-
-local function CheckKey(inputKey)
-	local isValid = KeyGuardLibrary.ValidateKey(inputKey)
-	if isValid then
-		-- Se a key for válida, mostra mensagem e ativa o resto do script
-		Fluent:Notify("Success", "Key correta! Carregando hub...", 3)
-		-- Aqui você pode chamar a função que inicia o seu hub
-		-- Exemplo: StartHub()
-	else
-		Fluent:Notify("Error", "Key inválida, tente novamente.", 3)
-	end
-end
-
-local EnterButton = Tabs.KeySys:AddButton("Confirm Key", function()
-	if key == "" then
-		Fluent:Notify("Warning", "Por favor, insira uma key.", 3)
-	else
-		CheckKey(key)
-	end
-end)
 
 local Checkkey = Tabs.KeySys:AddButton({
 		Title = "Check Key",
