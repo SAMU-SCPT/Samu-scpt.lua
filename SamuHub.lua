@@ -27,20 +27,40 @@ KeyGuardLibrary.Set({
 })
 
 local Tabs = {
-		KeySys = Window:AddTab({ Title = "Key System", Icon = "key" }),
+	KeySys = Window:AddTab({ Title = "Key System", Icon = "key" }),
 }
 
 local Entkey = Tabs.KeySys:AddInput("Input", {
-		Title = "Enter Key",
-		Description = "Enter Key Here",
-		Default = "",
-		Placeholder = "Enter key…",
-		Numeric = false,
-		Finished = false,
-		Callback = function(Value)
-				key = Value
-		end
+	Title = "Enter Key",
+	Description = "Enter Key Here",
+	Default = "",
+	Placeholder = "Enter key…",
+	Numeric = false,
+	Finished = false,
+	Callback = function(Value)
+		key = Value
+	end
 })
+
+local function CheckKey(inputKey)
+	local isValid = KeyGuardLibrary.ValidateKey(inputKey)
+	if isValid then
+		-- Se a key for válida, mostra mensagem e ativa o resto do script
+		Fluent:Notify("Success", "Key correta! Carregando hub...", 3)
+		-- Aqui você pode chamar a função que inicia o seu hub
+		-- Exemplo: StartHub()
+	else
+		Fluent:Notify("Error", "Key inválida, tente novamente.", 3)
+	end
+end
+
+local EnterButton = Tabs.KeySys:AddButton("Confirm Key", function()
+	if key == "" then
+		Fluent:Notify("Warning", "Por favor, insira uma key.", 3)
+	else
+		CheckKey(key)
+	end
+end)
 
 local Checkkey = Tabs.KeySys:AddButton({
 		Title = "Check Key",
