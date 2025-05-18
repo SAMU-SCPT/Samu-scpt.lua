@@ -1,14 +1,3 @@
-local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
-local trueData = "1c87ca05413b49ecbb62fa80b935fab8"
-local falseData = "e9740bf9cb924b499b6d765823adc033"
-
-KeyGuardLibrary.Set({
-	publicToken = "492f786125f941479a7da3b27abe74af",
-	privateToken = "e8f5bfbed6e34d88bba2ce0161c98c78",
-	trueData = trueData,
-	falseData = falseData,
-})
-
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local key = ""
 
@@ -20,6 +9,17 @@ local Window = Fluent:CreateWindow({
 		Acrylic = false,
 		Theme = "Dark",
 		MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
+local trueData = "1c87ca05413b49ecbb62fa80b935fab8"
+local falseData = "e9740bf9cb924b499b6d765823adc033"
+
+KeyGuardLibrary.Set({
+	publicToken = "492f786125f941479a7da3b27abe74af",
+	privateToken = "e8f5bfbed6e34d88bba2ce0161c98c78",
+	trueData = trueData,
+	falseData = falseData,
 })
 
 local Tabs = {
