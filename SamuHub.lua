@@ -1,3 +1,7 @@
+if not game:IsLoaded() then
+	repeat task.wait() until game:IsLoaded()
+end
+
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local key = ""
 
