@@ -35,8 +35,7 @@ local Entkey = Tabs.KeySys:AddInput("Input", {
 	Finished = false,
 	Callback = function(Value)
 		key = Value
-		
-end
+	end
 })
 
 local Checkkey = Tabs.KeySys:AddButton({
