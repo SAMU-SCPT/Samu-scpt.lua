@@ -97,7 +97,7 @@ OrionLib:MakeNotification(
         {
             Name = "Notification",
             Content = "Please Wait For Loading Code",
-            Image = "rbxassetid://109203858649999",
+            Image = "rbxassetid://88147973848189",
             Time = 7
         }
     )
@@ -138,7 +138,7 @@ OldNamecall = hookmetamethod(game, "__namecall", newcclosure(function(...)
 			StarterGui:SetCore("SendNotification", {
 				Title = "SAMU HUB",
 				Text = "The script has successfully intercepted an attempted kick.",
-				Icon = "rbxassetid://116733123068054",
+				Icon = "rbxassetid://128226597224894",
 				Duration = 2,
 			})
 		end
@@ -153,7 +153,7 @@ if getgenv().ED_AntiKick.SendNotifications then
 	StarterGui:SetCore("SendNotification", {
 		Title = "SAMU HUB",
 		Text = "Anti-Kick script loaded!",
-		Icon = "rbxassetid://116733123068054",
+		Icon = "rbxassetid://128226597224894",
 		Duration = 3,
 	})
 end
@@ -7526,7 +7526,7 @@ OrionLib:MakeNotification(
     {
         Name = "Notification",
         Content = "Done Loading Code You Can Use Script Now",
-        Image = "rbxassetid://88147973848189",
+        Image = "rbxassetid://128226597224894",
         Time = 5
     }
 )
