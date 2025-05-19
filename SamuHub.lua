@@ -1,53 +1,4 @@
-local KeyGuardLibrary = loadstring(game:HttpGet('https://cdn.keyguardian.org/library/v1.0.0.lua'))()
-local trueData = "b8992653fcf84be1aa0a976dbde6f86e"
-local falseData = "42b1a7dc9d4641848816d52410602fdb"
-
-KeyGuardLibrary.Set({
-	publicToken = "492f786125f941479a7da3b27abe74af",
-	privateToken = "e8f5bfbed6e34d88bba2ce0161c98c78",
-	trueData = trueData,
-	falseData = falseData,
-})
-
-local Fluent = loadstring(game:HttpGet('https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua'))()
-local key = ""
-
-local Window = Fluent:CreateWindow({
-	Title = "Sistema de Chaves",
-	SubTitle = "SAMU HUB",
-	TabWidth = 160,
-	Size = UDim2.fromOffset(580, 340),
-	Acrylic = false,
-	Theme = "Dark",
-	MinimizeKey = Enum.KeyCode.LeftControl
-})
-
-local Tabs = {
-	KeySys = Window:AddTab({ Title = "Sistema de Chaves", Icon = "key" }),
-}
-
-local Entkey = Tabs.KeySys:AddInput("Input", {
-	Title = "Insira a Chave",
-	Description = "Insira sua chave aqui",
-	Default = "",
-	Placeholder = "Insira a chave…",
-	Numeric = false,
-	Finished = false,
-	Callback = function(Value)
-		key = Value
-	end
-})
-
-local Checkkey = Tabs.KeySys:AddButton({
-	Title = "Verificar Chave",
-	Description = "Insira a chave antes de pressionar este botão",
-	Callback = function()
-		local response = KeyGuardLibrary.validateDefaultKey(key)
-		local message = ""
-		
-if response == trueData then
-			message = "Chave válida!"
-			local exploit = getexecutorname or identifyexecutor
+local exploit = getexecutorname or identifyexecutor
 local support = {
     ["Fluxus"] = true,
     ["Trigon"] = true,
@@ -7597,32 +7548,3 @@ SaveManager:BuildConfigSection(Tabs.Settings)
 
 
 SaveManager:LoadAutoloadConfig()
-			
-		else
-			message = "Chave inválida!"
-			
-end
-			Fluent:CreateNotification({
-				Title = "Resultado da Verificação",
-				Content = message,
-				Time = 5,
-			})
-		
-end
-})
-
-local Getkey = Tabs.KeySys:AddButton({
-	Title = "Obter Chave",
-	Description = "Copiar a chave para a área de transferência",
-	Callback = function()
-		setclipboard(KeyGuardLibrary.getLink())
-		Fluent:CreateNotification({
-			Title = "Chave Copiada",
-			Content = "A chave foi copiada para a área de transferência!",
-			Time = 5,
-			})
-		
-end
-})
-
-Window:SelectTab(1)
