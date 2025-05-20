@@ -1,45 +1,51 @@
--- SISTEMA DE KEY (SAMU HUB)
 local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
+local trueData = "ee0c911c029b4f18b82c825597a51285"
+local falseData = "2e53a57b832449bab95f7593036c3613"
+
 KeyGuardLibrary.Set({
 	publicToken = "492f786125f941479a7da3b27abe74af",
 	privateToken = "e8f5bfbed6e34d88bba2ce0161c98c78",
+	trueData = trueData,
+	falseData = falseData,
 })
 
 local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local key = ""
 
 local Window = Fluent:CreateWindow({
-	Title = "Sistema de Key",
-	SubTitle = "SAMU HUB",
-	TabWidth = 160,
-	Size = UDim2.fromOffset(580, 340),
-	Acrylic = false,
-	Theme = "Dark",
-	MinimizeKey = Enum.KeyCode.LeftControl
+		Title = "Key System",
+		SubTitle = "SAMU HUB",
+		TabWidth = 160,
+		Size = UDim2.fromOffset(580, 340),
+		Acrylic = false,
+		Theme = "Dark",
+		MinimizeKey = Enum.KeyCode.LeftControl
 })
 
 local Tabs = {
-	KeySys = Window:AddTab({ Title = "Sistema de Key", Icon = "key" }),
+		KeySys = Window:AddTab({ Title = "Key System", Icon = "key" }),
 }
 
-Tabs.KeySys:AddInput("Input", {
-	Title = "Coloque a Key",
-	Description = "Coloque a Key aqui",
-	Placeholder = "Coloque a key…",
-	Callback = function(Value)
-		key = Value
-	end
+local Entkey = Tabs.KeySys:AddInput("Input", {
+		Title = "Enter Key",
+		Description = "Enter Key Here",
+		Default = "",
+		Placeholder = "Enter key…",
+		Numeric = false,
+		Finished = false,
+		Callback = function(Value)
+				key = Value
+		end
 })
 
-Tabs.KeySys:AddButton({
-	Title = "Verificar Key",
-	Description = "Coloque a Key depois aperte esse botão",
-	Callback = function()
-		local isValid = KeyGuardLibrary.validateDefaultKey(key)
-		if isValid then
-			print("Key válida! Iniciando o hub...")
-			Window:Destroy()
-			print("✅ Security verification passed. Loading SAMU HUB...")
+local Checkkey = Tabs.KeySys:AddButton({
+		Title = "Check Key",
+		Description = "Enter Key before pressing this button",
+		Callback = function()
+				local response = KeyGuardLibrary.validateDefaultKey(key)
+				if response == trueData then
+						print("Key is valid")
+						print("✅ Security verification passed. Loading SAMU HUB...")
 if game.PlaceId == 2753915549 then
 	World1 = true;
 elseif game.PlaceId == 4442272183 then
@@ -12053,18 +12059,18 @@ for _, v in pairs(resultNormal) do
 end;
 print("Script Loaded!");
 
-		else
-			warn("Key inválida.")
+				else
+						print("Key is invalid")
+				end
 		end
-	end
 })
 
-Tabs.KeySys:AddButton({
-	Title = "Pegar Key",
-	Description = "Copiar o link para pegar a key",
-	Callback = function()
-		setclipboard(KeyGuardLibrary.getLink())
-	end
+local Getkey = Tabs.KeySys:AddButton({
+		Title = "Get Key",
+		Description = "Get Key here",
+		Callback = function()
+				setclipboard(KeyGuardLibrary.getLink())
+		end
 })
 
 Window:SelectTab(1)
