@@ -9,7 +9,7 @@ KeyGuardLibrary.Set({
 	falseData = falseData,
 })
 
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub_source.lua"))()
 local key = ""
 
 local Window = Fluent:CreateWindow({
