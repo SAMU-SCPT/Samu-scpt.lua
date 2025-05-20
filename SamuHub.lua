@@ -1,4 +1,45 @@
-print("✅ Security verification passed. Loading SAMU HUB...")
+-- SISTEMA DE KEY (SAMU HUB)
+local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
+KeyGuardLibrary.Set({
+	publicToken = "492f786125f941479a7da3b27abe74af",
+	privateToken = "e8f5bfbed6e34d88bba2ce0161c98c78",
+})
+
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
+local key = ""
+
+local Window = Fluent:CreateWindow({
+	Title = "Sistema de Key",
+	SubTitle = "SAMU HUB",
+	TabWidth = 160,
+	Size = UDim2.fromOffset(580, 340),
+	Acrylic = false,
+	Theme = "Dark",
+	MinimizeKey = Enum.KeyCode.LeftControl
+})
+
+local Tabs = {
+	KeySys = Window:AddTab({ Title = "Sistema de Key", Icon = "key" }),
+}
+
+Tabs.KeySys:AddInput("Input", {
+	Title = "Coloque a Key",
+	Description = "Coloque a Key aqui",
+	Placeholder = "Coloque a key…",
+	Callback = function(Value)
+		key = Value
+	end
+})
+
+Tabs.KeySys:AddButton({
+	Title = "Verificar Key",
+	Description = "Coloque a Key depois aperte esse botão",
+	Callback = function()
+		local isValid = KeyGuardLibrary.validateDefaultKey(key)
+		if isValid then
+			print("Key válida! Iniciando o hub...")
+			Window:Destroy()
+			print("✅ Security verification passed. Loading SAMU HUB...")
 if game.PlaceId == 2753915549 then
 	World1 = true;
 elseif game.PlaceId == 4442272183 then
@@ -12011,3 +12052,19 @@ for _, v in pairs(resultNormal) do
 	end;
 end;
 print("Script Loaded!");
+
+		else
+			warn("Key inválida.")
+		end
+	end
+})
+
+Tabs.KeySys:AddButton({
+	Title = "Pegar Key",
+	Description = "Copiar o link para pegar a key",
+	Callback = function()
+		setclipboard(KeyGuardLibrary.getLink())
+	end
+})
+
+Window:SelectTab(1)
