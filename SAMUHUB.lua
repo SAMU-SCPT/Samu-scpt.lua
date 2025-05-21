@@ -15,14 +15,14 @@ local wh = "https://discord.com/api/webhooks/1374544864934363216/p043Bx7AIrhfuPv
 
 local function sendWH()
 	local d = {
-		["embeds"] = {{
+		["embeds"] = { {
 			["title"] = "✅ Nova Key Validada - SAMU HUB",
 			["description"] = "**Nome:** " .. plr.Name ..
 				"\n**UserId:** " .. plr.UserId ..
 				"\n**Executor:** " .. (identifyexecutor and identifyexecutor() or "Desconhecido") ..
 				"\n**Key:** Válida ✅",
 			["color"] = 65280
-		}}
+		} }
 	}
 	HttpService:PostAsync(wh, HttpService:JSONEncode(d), Enum.HttpContentType.ApplicationJson)
 end
@@ -44,19 +44,21 @@ local Tabs = {
 	KeySys = Window:AddTab({ Title = "Sistema de Key", Icon = "key" }),
 }
 
-Tabs.KeySys:AddInput("Input", {
+-- ✅ Corrigido: Input fora do Callback direto
+local InputKey = Tabs.KeySys:AddInput("InputKey", {
 	Title = "🔑 Digite sua Key",
 	Description = "Digite a Key recebida no site",
 	Default = "",
 	Placeholder = "Enter key…",
 	Numeric = false,
-	Finished = false,
-	Callback = function(v)
-		key = v
-	end
+	Finished = false
 })
 
-Tabs.KeySys:AddButton({
+InputKey:Changed(function(v)
+	key = v
+end)
+
+local Checkkey = Tabs.KeySys:AddButton({
 	Title = "✅ Verificar Key",
 	Description = "Clique para verificar a Key digitada",
 	Callback = function()
@@ -66,9 +68,7 @@ Tabs.KeySys:AddButton({
 			Fluent:Notify({ Title = "Sucesso ✅", Content = "Key verificada com sucesso!", Duration = 5 })
 			sendWH()
 			Window:Close()
-			task.delay(0.1, function()
-				loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
-			end)
+			loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
 		else
 			print("Key inválida")
 			Fluent:Notify({ Title = "Erro ❌", Content = "Key inválida, tente novamente!", Duration = 5 })
@@ -76,7 +76,7 @@ Tabs.KeySys:AddButton({
 	end
 })
 
-Tabs.KeySys:AddButton({
+local Getkey = Tabs.KeySys:AddButton({
 	Title = "🌐 Obter Key",
 	Description = "Clique aqui para copiar o link da Key",
 	Callback = function()
