@@ -7,11 +7,10 @@ local tentativas = 0
 local maxTentativas = 10
 local bloqueado = false
 
--- OFUSCAÇÃO DO WEBHOOK (base64 + URI encode)
 local encodedWebhook = "aHR0cHM6Ly9kaXNjb3JkLmNvbS9hcGkvd2ViaG9va3MvMTM3NDg4NjY2MzcwMDA5MDk5MS91XzNuTk5sZWpCdEFiVW90QkZ1ME5YZnJxOUJMcDl1bkJTM1pFN0ViaU02MUdVTnBtXzlVSmRreGlhOXFyQy1EOGZqUw=="
 local webhookURL = syn and syn.request or http and http.request or http_request or fluxus and fluxus.request or request
 local decode = function()
-    return game:HttpGet(("https://rentry.co/samuhubwebhook/raw")) -- alternativa: usar Rentry para esconder se necessário
+    return game:HttpGet("https://rentry.co/samuhubwebhook/raw")
 end
 
 local function sendWebhook(data)
