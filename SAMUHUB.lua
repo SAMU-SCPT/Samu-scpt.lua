@@ -1,63 +1,86 @@
-local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
-local trueData = "3c6be67f58c743a98af7ed39a2feabc1"
-local falseData = "ea4d0d3dd35f44f0aa768fce2e51f7cb"
-
-KeyGuardLibrary.Set({
-	publicToken = "492f786125f941479a7da3b27abe74af",
-	privateToken = "e8f5bfbed6e34d88bba2ce0161c98c78",
-	trueData = trueData,
-	falseData = falseData,
+local fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/synolope/Fluent-UI/main/library.lua"))()
+local Window = fluent:CreateWindow({
+    Title = "SAMU Hub - Sistema de Key",
+    SubTitle = "Acesse sua key e valide para continuar",
+    TabWidth = 160,
+    Size = UDim2.fromOffset(480, 320),
+    Acrylic = true,
+    Theme = "Dark",
+    Center = true,
+    IsDraggable = true
 })
 
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-local key = ""
+local keyTab = Window:AddTab({Title = "🔑 Key"})
 
-local Window = Fluent:CreateWindow({
-		Title = "Key System",
-		SubTitle = "SAMU HUB",
-		TabWidth = 160,
-		Size = UDim2.fromOffset(580, 340),
-		Acrylic = false,
-		Theme = "Dark",
-		MinimizeKey = Enum.KeyCode.LeftControl
-})
-
-local Tabs = {
-		KeySys = Window:AddTab({ Title = "Key System", Icon = "key" }),
+local discordWhitelist = {
+    ["agu"] = true,
+    ["OutroCara123#4567"] = true,
+    -- Adicione mais Discords aqui
 }
 
-local Entkey = Tabs.KeySys:AddInput("Input", {
-		Title = "Enter Key",
-		Description = "Enter Key Here",
-		Default = "",
-		Placeholder = "Enter key…",
-		Numeric = false,
-		Finished = false,
-		Callback = function(Value)
-				key = Value
-		end
+local weeklyKey = "Samu_Hub:5b8e9185e8434e6ea210b17e94ba7f56" -- semana
+local premiumKey = "Samu_Hub26a774563a25487aa99a1ee0b22fd913" -- Key premium
+
+local userKey = ""
+local userDiscord = ""
+
+local icon = Instance.new("ImageButton")
+icon.Image = "rbxassetid://128226597224894"
+icon.Size = UDim2.new(0, 64, 0, 64)
+icon.Position = UDim2.new(0, 20, 1, -84)
+icon.BackgroundTransparency = 1
+icon.Parent = game:GetService("CoreGui")
+
+icon.MouseButton1Click:Connect(function()
+    Window:SelectTab(keyTab)
+end)
+
+keyTab:AddParagraph({
+    Title = "❗ Obtenha sua key",
+    Content = "Clique no botão abaixo para gerar a key semanal."
 })
 
-local Checkkey = Tabs.KeySys:AddButton({
-		Title = "Check Key",
-		Description = "Enter Key before pressing this button",
-		Callback = function()
-				local response = KeyGuardLibrary.validateDefaultKey(key)
-				if response == trueData then
-						print("Key is valid")
-						-- Your code here
-				else
-						print("Key is invalid")
-				end
-		end
+keyTab:AddButton({
+    Title = "🌐 Pegar Key (KeyGuardian)",
+    Callback = function()
+        setclipboard("https://keyguardian.org/a/4868?id=12b64c4ceb7a4bd8b421929d6c6d1e5f")
+        fluent:Notify({
+            Title = "Link Copiado",
+            Content = "Cole no navegador para gerar sua key!",
+            Duration = 4
+        })
+    end
 })
 
-local Getkey = Tabs.KeySys:AddButton({
-		Title = "Get Key",
-		Description = "Get Key here",
-		Callback = function()
-				setclipboard(KeyGuardLibrary.getLink())
-		end
-})
+keyTab:AddInput("🔑 Sua Key", function(value)
+    userKey = value
+end)
 
-Window:SelectTab(1)
+keyTab:AddInput("👤 Seu Discord (para Premium)", function(value)
+    userDiscord = value
+end)
+
+keyTab:AddButton({
+    Title = "✅ Validar Key",
+    Callback = function()
+        if userKey == weeklyKey then
+            fluent:Notify({Title = "Key Válida", Content = "Acesso liberado!", Duration = 3})
+            task.wait(1)
+            Window:Destroy()
+            icon:Destroy()
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
+        elseif userKey == premiumKey then
+            if discordWhitelist[userDiscord] then
+                fluent:Notify({Title = "Key Premium Válida", Content = "Acesso premium liberado!", Duration = 3})
+                task.wait(1)
+                Window:Destroy()
+                icon:Destroy()
+                loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
+            else
+                fluent:Notify({Title = "Erro", Content = "Seu Discord não está autorizado para chave premium.", Duration = 5})
+            end
+        else
+            fluent:Notify({Title = "Key Inválida", Content = "A key inserida está incorreta. Pegue novamente no botão acima.", Duration = 5})
+        end
+    end
+})
