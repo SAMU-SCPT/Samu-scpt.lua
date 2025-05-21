@@ -9,7 +9,7 @@ KeyGuardLibrary.Set({
 	falseData = falseData,
 })
 
-local Fluent = loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub_source.lua"))()
+local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
 local key = ""
 
 local Window = Fluent:CreateWindow({
@@ -54,7 +54,7 @@ elseif game.PlaceId == 7449423635 then
 	World3 = true;
 end;
 
-local Update = (loadstring(Game:HttpGet("https://you.whimper.xyz/sources/nox/data/fruitsource.lua")))();
+local Update = (loadstring(Game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub_source.lua")))();
 if Update:LoadAnimation() then
 	Update:StartLoad();
 end;
@@ -66,37 +66,37 @@ local Library = Update:Window({
 	Size = UDim2.new(0, 450, 0, 300),
 	TabWidth = 140
 });
-local MainTab = Library:Tab("Main", "rbxassetid://10723407389");
-local FarmTab = Library:Tab("Farming", "rbxassetid://10723415335");
-local ItemsTab = Library:Tab("Items", "rbxassetid://10709782497");
-local SettingsTab = Library:Tab("Setting", "rbxassetid://10734950309");
-local LocalPlayerTab = Library:Tab("Local Player", "rbxassetid://10747373176");
+local MainTab = Library:Tab("Main", "rbxassetid://104229790793966");
+local FarmTab = Library:Tab("Farming", "rbxassetid://118531171842036");
+local ItemsTab = Library:Tab("Items", "rbxassetid://72774673269964");
+local SettingsTab = Library:Tab("Setting", "rbxassetid://104229790793966");
+local LocalPlayerTab = Library:Tab("Local Player", "rbxassetid://121295209284440");
 local HoldTab = Library:Tab("Hold Skill", "rbxassetid://10734984606");
 if World3 then
-	SeaTab = Library:Tab("Sea Event", "rbxassetid://10709761530");
-	SettingSeaTab = Library:Tab("Setting Sea", "rbxassetid://10709810948");
+	SeaTab = Library:Tab("Sea Event", "rbxassetid://80709694200018");
+	SettingSeaTab = Library:Tab("Setting Sea", "rbxassetid://104229790793966");
 end;
 if World2 or World3 then
-	SeaStackTab = Library:Tab("Stack Sea", "rbxassetid://10747376931");
+	SeaStackTab = Library:Tab("Stack Sea", "rbxassetid://126185052136118");
 end;
 if World3 then
-	CraftTab = Library:Tab("Crafts", "rbxassetid://10723405360");
-	DragonDojoTab = Library:Tab("Dragon Dojo", "rbxassetid://10734951847");
+	CraftTab = Library:Tab("Crafts", "rbxassetid://81366475386295");
+	DragonDojoTab = Library:Tab("Dragon Dojo", "rbxassetid://80679808285703");
 end;
 local StatsTab = Library:Tab("Stats Weapon", "rbxassetid://10709770317");
 if World3 or World2 then
-	RaceV4Tab = Library:Tab("Race V4", "rbxassetid://10723425539");
+	RaceV4Tab = Library:Tab("Race V4", "rbxassetid://121295209284440");
 end;
-local CombatTab = Library:Tab("Combat", "rbxassetid://10734975486");
+local CombatTab = Library:Tab("Combat", "rbxassetid://74953619869004");
 if World2 or World3 then
-	RaidTab = Library:Tab("Raid", "rbxassetid://10723345749");
+	RaidTab = Library:Tab("Raid", "rbxassetid://77850552896595");
 end;
-local EspTab = Library:Tab("Esp", "rbxassetid://10723346959");
-local TeleportTab = Library:Tab("Teleport", "rbxassetid://10734886004");
-local ShopTab = Library:Tab("Shop", "rbxassetid://10734952479");
-local FruitTab = Library:Tab("Devil Fruit", "rbxassetid://10734883986");
-local MiscTab = Library:Tab("Misc", "rbxassetid://10723424838");
-local ServTab = Library:Tab("Server", "rbxassetid://10723426722");
+local EspTab = Library:Tab("Esp", "rbxassetid://97972757203941");
+local TeleportTab = Library:Tab("Teleport", "rbxassetid://117320966895261");
+local ShopTab = Library:Tab("Shop", "rbxassetid://122689857377611");
+local FruitTab = Library:Tab("Devil Fruit", "rbxassetid://72774673269964");
+local MiscTab = Library:Tab("Misc", "rbxassetid://104229790793966");
+local ServTab = Library:Tab("Server", "rbxassetid://131857025674963");
 _G.Settings = {
 	Main = {
 		["Select Weapon"] = "Melee",
