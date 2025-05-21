@@ -44,7 +44,7 @@ local Tabs = {
 	KeySys = Window:AddTab({ Title = "Sistema de Key", Icon = "key" }),
 }
 
-local Entkey = Tabs.KeySys:AddInput("Input", {
+Tabs.KeySys:AddInput("Input", {
 	Title = "🔑 Digite sua Key",
 	Description = "Digite a Key recebida no site",
 	Default = "",
@@ -56,7 +56,7 @@ local Entkey = Tabs.KeySys:AddInput("Input", {
 	end
 })
 
-local Checkkey = Tabs.KeySys:AddButton({
+Tabs.KeySys:AddButton({
 	Title = "✅ Verificar Key",
 	Description = "Clique para verificar a Key digitada",
 	Callback = function()
@@ -66,7 +66,9 @@ local Checkkey = Tabs.KeySys:AddButton({
 			Fluent:Notify({ Title = "Sucesso ✅", Content = "Key verificada com sucesso!", Duration = 5 })
 			sendWH()
 			Window:Close()
-			loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
+			task.delay(0.1, function()
+				loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
+			end)
 		else
 			print("Key inválida")
 			Fluent:Notify({ Title = "Erro ❌", Content = "Key inválida, tente novamente!", Duration = 5 })
@@ -74,7 +76,7 @@ local Checkkey = Tabs.KeySys:AddButton({
 	end
 })
 
-local Getkey = Tabs.KeySys:AddButton({
+Tabs.KeySys:AddButton({
 	Title = "🌐 Obter Key",
 	Description = "Clique aqui para copiar o link da Key",
 	Callback = function()
