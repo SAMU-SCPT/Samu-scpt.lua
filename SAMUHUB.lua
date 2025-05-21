@@ -45,7 +45,7 @@ local Window = fluent:CreateWindow({
 local keyTab = Window:AddTab({Title = "🔑 Key"})
 
 local discordWhitelist = {
-    ["agu"] = true,
+    ["agu2080"] = true,
     ["OutroCara123#4567"] = true,
 }
 
