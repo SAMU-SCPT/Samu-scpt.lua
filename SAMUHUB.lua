@@ -39,17 +39,17 @@ local Entkey = Tabs.KeySys:AddInput("Input", {
 })
 
 local Checkkey = Tabs.KeySys:AddButton({
-		Title = "Check Key",
-		Description = "Enter Key before pressing this button",
-		Callback = function()
-				local response = KeyGuardLibrary.validateDefaultKey(key)
-				if response == trueData then
-						print("Key is valid")
-					loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
-				else
-						print("Key is invalid")
-				end
-		end
+    Title = "Check Key",
+    Description = "Enter Key before pressing this button",
+    Callback = function()
+        local response = KeyGuardLibrary.validateDefaultKey(key)
+        if response == true then
+            print("Key is valid")
+            loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
+        else
+            print("Key is invalid")
+        end
+    end
 })
 
 local Getkey = Tabs.KeySys:AddButton({
