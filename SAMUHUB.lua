@@ -45,7 +45,7 @@ local Checkkey = Tabs.KeySys:AddButton({
 				local response = KeyGuardLibrary.validateDefaultKey(key)
 				if response == trueData then
 						print("Key is valid")
-						loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
+					loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
 				else
 						print("Key is invalid")
 				end
