@@ -1,6 +1,6 @@
 local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
-local trueData = "0ade5e8e7ca248cfb7835ba49635ca17"
-local falseData = "25fed18f30f24826833724a775b3b961"
+local trueData = "48e081763426480f937be0d1fb60b6a0"
+local falseData = "30385b8ba2234bcea35ca1581fc79e53"
 
 KeyGuardLibrary.Set({
 	publicToken = "492f786125f941479a7da3b27abe74af",
@@ -39,17 +39,17 @@ local Entkey = Tabs.KeySys:AddInput("Input", {
 })
 
 local Checkkey = Tabs.KeySys:AddButton({
-    Title = "Check Key",
-    Description = "Enter Key before pressing this button",
-    Callback = function()
-        local response = KeyGuardLibrary.validateDefaultKey(key)
-        if response == true then
-            print("Key is valid")
-            loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
-        else
-            print("Key is invalid")
-        end
-    end
+		Title = "Check Key",
+		Description = "Enter Key before pressing this button",
+		Callback = function()
+				local response = KeyGuardLibrary.validateDefaultKey(key)
+				if response == trueData then
+						print("Key is valid")
+						loadstring(game:HttpGet("https://raw.githubusercontent.com/SAMU-SCPT/Samu-scpt.lua/refs/heads/main/SamuHub.lua"))()
+				else
+						print("Key is invalid")
+				end
+		end
 })
 
 local Getkey = Tabs.KeySys:AddButton({
