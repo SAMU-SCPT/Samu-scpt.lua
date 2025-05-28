@@ -2271,7 +2271,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
   
      local set = sxhub:AddTab("Setting","7040347038")
   set:AddLabel("Setting")
-      set:AddButton("Credit By Sintax#4976",function()
+      set:AddButton("Credit By vaipraescolamlk",function()
   end)
       set:AddButton("Copy link SAMU HUB Discord ",function()
       setclipboard("https://discord.gg/VA5S8XVaRA")
