@@ -106,7 +106,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
           local currenttab = ""
       
           local DoctorShiba = Instance.new("ScreenGui")
-          DoctorShiba.Name = "PROXOGUI"
+          DoctorShiba.Name = "SAMU HUBGUI"
           DoctorShiba.Parent = game.CoreGui
           DoctorShiba.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
       
@@ -1074,7 +1074,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
   
   
      
-      local sxhub = library:AddWindow("Proxo | Bloxfruit!",Enum.KeyCode.RightControl)
+      local sxhub = library:AddWindow("SAMU HUB | Bloxfruit!",Enum.KeyCode.RightControl)
       
       local Main = sxhub:AddTab("Main","6026568198")
       local stus = sxhub:AddTab("Auto Stats","7040410130")
@@ -2273,8 +2273,8 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
   set:AddLabel("Setting")
       set:AddButton("Credit By Sintax#4976",function()
   end)
-      set:AddButton("Copy link Proxo Discord ",function()
-      setclipboard("https://discord.gg/3SNUUvcaxP")
+      set:AddButton("Copy link SAMU HUB Discord ",function()
+      setclipboard("https://discord.gg/VA5S8XVaRA")
   end)
       set:AddButton("Hop Lower Server",function()
       HopLowerServer()
@@ -5314,16 +5314,16 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
   return DiscordLib
   elseif game.PlaceId == 4520749081 or game.PlaceId == 6381829480 or game.PlaceId == 5931540094 or game.PlaceId == 5931540094 then
     game.StarterGui:SetCore("SendNotification", {
-      Icon = "rbxassetid://9152775759";
-      Title = "PROXO", 
-      Text = "Welcome PROXO!"
+      Icon = "rbxassetid://128226597224894";
+      Title = "SAMU HUB", 
+      Text = "Welcome SAMU HUB!"
   })
   
   wait(1)
   
   game.StarterGui:SetCore("SendNotification", {
-      Icon = "rbxassetid://9152775759";
-      Title = "PROXO", 
+      Icon = "rbxassetid://128226597224894";
+      Title = "SAMU HUB", 
       Text = "Loading Ui..."
   })
   
@@ -6710,7 +6710,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
           end)
       end
       --
-      local RenUi = library:AddWindow("Proxo | King Legacy",Enum.KeyCode.RightControl)
+      local RenUi = library:AddWindow("SAMU HUB | King Legacy",Enum.KeyCode.RightControl)
       --
       local Main = RenUi:AddTab("Main","6026568198")
       local Stats = RenUi:AddTab("Stats","7040410130")
