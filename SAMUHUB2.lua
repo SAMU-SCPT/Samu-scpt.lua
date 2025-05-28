@@ -944,7 +944,7 @@ if game.PlaceId == 2753915549 or game.PlaceId == 4442272183 or game.PlaceId == 7
       Toggle.Position = UDim2.new(0.120833337, 0, 0.0952890813, 0)
       Toggle.Size = UDim2.new(0, 50, 0, 50)
       Toggle.Font = Enum.Font.Code
-      Toggle.Text = "Sx"
+      Toggle.Text = "SAMU HUB"
       Toggle.TextColor3 = Color3.fromRGB(0, 45, 255 )
       Toggle.TextScaled = true
       Toggle.MouseButton1Down:connect(function()
